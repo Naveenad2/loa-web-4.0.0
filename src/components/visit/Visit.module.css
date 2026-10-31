@@ -1,0 +1,324 @@
+.visit {
+  --arch: clamp(32px, 10vw, 180px);
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(6rem, 12vw, 9rem);
+  background:
+    radial-gradient(50% 40% at 0% 100%, color-mix(in oklab, var(--sand) 90%, transparent), transparent 70%),
+    var(--cream);
+  color: var(--text-on-light);
+  border-radius: 0 0 var(--arch) var(--arch);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(4rem, 8vw, 5rem);
+  align-items: center;
+}
+
+.info {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.eyebrow {
+  color: var(--clay);
+}
+
+.title {
+  font-size: var(--fs-h2);
+  color: var(--clay-800);
+}
+
+.title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--clay);
+}
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--muted-on-light);
+}
+
+.inlineLogo {
+  width: 3.1em;
+  margin: 0 0.3em;
+  vertical-align: -0.35em;
+  color: var(--clay);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--ember) 70%, transparent));
+}
+
+/* ---- Details list */
+.details {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid color-mix(in oklab, var(--clay) 18%, transparent);
+}
+
+.details > div {
+  display: grid;
+  gap: 0.3rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--clay) 18%, transparent);
+}
+
+.details dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.details dt svg {
+  width: 17px;
+  height: 17px;
+}
+
+.details dd {
+  font-size: 1.05rem;
+}
+
+.details address {
+  font-style: normal;
+}
+
+.details a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 560px) {
+  .details > div {
+    grid-template-columns: 11rem 1fr;
+    align-items: baseline;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.actions :global(.btn-burn) {
+  --btn-bg: var(--clay-800);
+  --btn-fg: var(--cream);
+}
+
+.ghost {
+  color: var(--clay-800);
+}
+
+/* ---- Media: map card + façade postcard */
+.media {
+  position: relative;
+  padding-bottom: clamp(3rem, 10vw, 4rem);
+}
+
+.map {
+  position: relative;
+  aspect-ratio: 4 / 3.4;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #e8dcc8;
+  box-shadow: 0 40px 70px -40px rgb(60 30 10 / 0.6), inset 0 0 0 1px rgb(90 39 19 / 0.12);
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Stylised street map drawn with gradients */
+.mapArt {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 46px, rgb(255 255 255 / 0.55) 46px 49px),
+    repeating-linear-gradient(90deg, transparent 0 62px, rgb(255 255 255 / 0.55) 62px 65px),
+    radial-gradient(30% 40% at 18% 78%, #c9d4a8, transparent 70%),
+    radial-gradient(25% 30% at 85% 20%, #c9d4a8, transparent 70%),
+    #eadfcb;
+}
+
+.road1,
+.road2,
+.road3 {
+  position: absolute;
+  background: #fff8ee;
+  box-shadow: 0 0 0 1px rgb(90 39 19 / 0.08);
+}
+
+.road1 {
+  left: -10%;
+  top: 52%;
+  width: 120%;
+  height: 14px;
+  rotate: -14deg;
+}
+
+.road2 {
+  left: 38%;
+  top: -10%;
+  width: 12px;
+  height: 120%;
+  rotate: 8deg;
+}
+
+.road3 {
+  left: 60%;
+  top: 30%;
+  width: 70%;
+  height: 9px;
+  rotate: 32deg;
+}
+
+.pin {
+  position: absolute;
+  top: 46%;
+  left: 47%;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  translate: -50% -100%;
+  border-radius: 50% 50% 50% 0;
+  rotate: -45deg;
+  background: var(--clay);
+  color: var(--cream);
+  box-shadow: 0 12px 24px -8px rgb(90 39 19 / 0.7);
+  animation: bob 2.4s var(--ease-in-out) infinite alternate;
+}
+
+.pin svg {
+  width: 24px;
+  height: 24px;
+  rotate: 45deg;
+}
+
+.pin::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  border: 2px solid var(--clay);
+  opacity: 0;
+  animation: ripple 2.4s var(--ease-out) infinite;
+}
+
+.mapBtn {
+  position: absolute;
+  inset: auto 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 18px;
+  text-align: left;
+  background: rgb(255 248 238 / 0.94);
+  box-shadow: 0 14px 30px -14px rgb(60 30 10 / 0.5);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.mapBtn:hover {
+  transform: translateY(-3px);
+}
+
+.mapLabel {
+  display: grid;
+  font-size: 0.85rem;
+  color: var(--muted-on-light);
+}
+
+.mapLabel strong {
+  font-family: var(--font-serif), serif;
+  font-size: 1.3rem;
+  color: var(--clay-800);
+}
+
+.mapAction {
+  padding: 0.55em 1em;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cream);
+  background: var(--clay);
+}
+
+.postcard {
+  position: absolute;
+  right: -2%;
+  bottom: 0;
+  width: min(48%, 260px);
+  padding: 8px 8px 0;
+  border-radius: 14px;
+  background: #fffaf2;
+  box-shadow: 0 30px 50px -24px rgb(60 30 10 / 0.6);
+  rotate: 5deg;
+  transition: rotate 0.6s var(--ease-out);
+}
+
+.postcard:hover {
+  rotate: 0deg;
+}
+
+.postcardImg {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 9px;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.postcard figcaption {
+  padding: 0.2rem 0 0.4rem;
+  text-align: center;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  color: var(--clay);
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+  .postcard {
+    right: -6%;
+  }
+}
+
+@keyframes bob {
+  to {
+    translate: -50% calc(-100% - 8px);
+  }
+}
+
+@keyframes ripple {
+  from {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pin,
+  .pin::after {
+    animation: none;
+  }
+}

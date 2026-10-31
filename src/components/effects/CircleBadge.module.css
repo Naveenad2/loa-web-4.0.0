@@ -1,0 +1,46 @@
+.badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(96px, 14vw, 140px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--clay) 0 52%, var(--clay-800) 100%);
+  color: var(--cream);
+  box-shadow: var(--shadow-deep), inset 0 0 0 1px rgb(255 255 255 / 0.12);
+}
+
+.ring {
+  position: absolute;
+  inset: 6%;
+  width: 88%;
+  height: 88%;
+  overflow: visible;
+  animation: spin 22s linear infinite;
+}
+
+.text {
+  fill: currentColor;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 8.4px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.logo {
+  width: 46%;
+  color: var(--cream);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    animation: none;
+  }
+}

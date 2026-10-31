@@ -1,0 +1,306 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(6rem, 13vw, 10rem);
+  overflow: clip;
+  background:
+    radial-gradient(60% 55% at 78% 55%, color-mix(in oklab, var(--ember) 30%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 0% 0%, color-mix(in oklab, var(--clay-800) 70%, transparent), transparent 70%),
+    var(--ink);
+  color: var(--text-on-dark);
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.grid {
+  display: grid;
+  gap: clamp(3.5rem, 8vw, 6rem);
+  align-items: center;
+}
+
+.copy {
+  display: grid;
+  justify-items: start;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* "Limited time offer" pill with a hand-drawn-ish ellipse, like the poster */
+.offer {
+  position: relative;
+  display: inline-block;
+  padding: 0.6em 1.4em;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ember-hi);
+}
+
+.offer::before,
+.offer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  rotate: -4deg;
+}
+
+.offer::after {
+  inset: 3px -4px;
+  rotate: 3deg;
+  opacity: 0.5;
+}
+
+/* Shrink-wrapped so "at the" tucks under the end of HOURS, like the poster. */
+.title {
+  display: grid;
+  width: fit-content;
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.happy {
+  font-size: clamp(3.4rem, 12vw, 8.5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  background: linear-gradient(180deg, #fff6ea 30%, var(--ember-hi) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.atThe {
+  position: relative;
+  justify-self: end;
+  margin-top: -0.42em;
+  margin-right: -0.15em;
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
+  color: var(--ember-hi);
+  rotate: -5deg;
+}
+
+.lounge {
+  margin-top: 0.1em;
+  font-family: var(--font-sans), sans-serif;
+  font-size: clamp(1.15rem, 3vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* 1 PM —— 7 PM */
+.time {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25em;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(4rem, 17vw, 7rem);
+  font-weight: 500;
+  font-variant-numeric: lining-nums;
+  line-height: 1;
+}
+
+.time span {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ember-hi);
+  text-shadow: 0 0 30px color-mix(in oklab, var(--ember) 45%, transparent);
+}
+
+.time small {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.24em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted-on-dark);
+}
+
+.time i {
+  align-self: center;
+  width: clamp(2.5rem, 8vw, 5rem);
+  height: 1.5px;
+  margin-inline: 0.3em;
+  background: linear-gradient(90deg, transparent, var(--ember-hi), transparent);
+}
+
+/* ---- Live card */
+.live {
+  width: min(100%, 460px);
+  padding: 1.1rem 1.25rem 1rem;
+  border-radius: 20px;
+  background: rgb(29 19 14 / 0.72);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.09);
+}
+
+.liveTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.liveDot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--sand);
+  opacity: 0.5;
+}
+
+.isLive .liveDot {
+  background: #7ddc8a;
+  opacity: 1;
+  box-shadow: 0 0 12px #7ddc8a;
+}
+
+.isLive .liveDot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: ping 1.8s var(--ease-out) infinite;
+}
+
+.liveHeadline {
+  font-family: var(--font-serif), serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--muted-on-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.clock svg {
+  width: 15px;
+  height: 15px;
+}
+
+.meter {
+  height: 4px;
+  margin-top: 0.9rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--ember), var(--ember-hi));
+  box-shadow: 0 0 12px var(--ember);
+  transform-origin: left;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.meterLabels {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--muted-on-dark);
+}
+
+.terms {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  color: var(--muted-on-dark);
+}
+
+/* ---- Visual: hookah in an arch, ringed by a slowly burning edge */
+.visual {
+  position: relative;
+  justify-self: center;
+  width: min(72vw, 400px);
+}
+
+.ring {
+  position: relative;
+  isolation: isolate;
+  padding: 2px;
+  aspect-ratio: 0.62;
+  border-radius: 999px 999px 26px 26px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.ring::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 200%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: conic-gradient(transparent 0 60%, var(--ember) 80%, var(--ember-hi) 90%, transparent 100%);
+  animation: spin 6s linear infinite;
+}
+
+.arch {
+  position: relative;
+  height: 100%;
+  border-radius: 999px 999px 24px 24px;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+  object-position: 55% 50%;
+}
+
+.glow {
+  position: absolute;
+  inset: 20% -10% -10%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--ember) 55%, transparent), transparent);
+  filter: blur(30px);
+  animation: pulse 5s ease-in-out infinite alternate;
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+  .visual {
+    justify-self: end;
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ping {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}

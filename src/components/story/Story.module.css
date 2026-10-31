@@ -1,0 +1,181 @@
+.story {
+  --arch: clamp(32px, 10vw, 180px);
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(7.5rem, 15vw, 12rem) clamp(5rem, 10vw, 8rem);
+  border-radius: var(--arch) var(--arch) 0 0;
+  background:
+    radial-gradient(60% 40% at 100% 0%, color-mix(in oklab, var(--sand) 80%, transparent), transparent 70%),
+    var(--cream);
+  color: var(--text-on-light);
+}
+
+.inner {
+  display: grid;
+  gap: clamp(3rem, 7vw, 6rem);
+}
+
+.head {
+  display: grid;
+  gap: 1rem;
+}
+
+.eyebrow {
+  color: var(--clay);
+}
+
+.title {
+  font-size: var(--fs-h2);
+  color: var(--clay-800);
+}
+
+.scriptWord {
+  display: inline-block;
+  font-size: 1.08em;
+  color: var(--olive);
+  transform: translateY(0.06em) rotate(-4deg);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.manifesto {
+  font-family: var(--font-serif), serif;
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: 1.28;
+  color: var(--text-on-light);
+}
+
+.em {
+  font-style: italic;
+  color: var(--clay);
+}
+
+/* ---- Arch figure with a slowly rotating outline behind it */
+.figureWrap {
+  justify-self: center;
+}
+
+.figure {
+  position: relative;
+  width: min(62vw, 300px);
+}
+
+.figure::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 999px 999px 18px 18px;
+  border: 1px dashed color-mix(in oklab, var(--clay) 50%, transparent);
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 0.62;
+  overflow: hidden;
+  border-radius: 999px 999px 10px 10px;
+  box-shadow: 0 30px 60px -30px rgb(60 30 10 / 0.6);
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.figure:hover .img {
+  transform: scale(1.06);
+}
+
+.caption {
+  position: absolute;
+  left: -18%;
+  bottom: 12%;
+  padding: 0.35em 0.7em 0.5em;
+  border-radius: 999px;
+  font-size: clamp(1.6rem, 4.5vw, 2.3rem);
+  line-height: 1;
+  color: var(--cream);
+  background: var(--clay);
+  box-shadow: 0 14px 30px -12px rgb(90 39 19 / 0.7);
+  rotate: -6deg;
+}
+
+/* ---- Pillars */
+.pillars {
+  display: grid;
+  gap: 1rem;
+  counter-reset: pillar;
+}
+
+.pillar {
+  position: relative;
+  display: grid;
+  gap: 0.5rem;
+  height: 100%;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: 24px;
+  background: color-mix(in oklab, var(--sand) 55%, var(--cream));
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--clay) 14%, transparent);
+  overflow: hidden;
+  transition:
+    transform 0.6s var(--ease-out),
+    box-shadow 0.6s var(--ease-out);
+}
+
+.pillar::after {
+  content: "";
+  position: absolute;
+  right: -30%;
+  bottom: -60%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 999px 999px 0 0;
+  background: color-mix(in oklab, var(--clay) 10%, transparent);
+  transition: transform 0.8s var(--ease-out);
+}
+
+.pillar:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--clay) 30%, transparent),
+    0 24px 40px -24px rgb(90 39 19 / 0.45);
+}
+
+.pillar:hover::after {
+  transform: translateY(-25%) scale(1.2);
+}
+
+.pillarIndex {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--clay);
+}
+
+.pillarTitle {
+  font-size: var(--fs-h3);
+  color: var(--clay-800);
+}
+
+.pillar p {
+  color: var(--muted-on-light);
+}
+
+@media (min-width: 760px) {
+  .pillars {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: 1.35fr 0.65fr;
+  }
+  .figureWrap {
+    justify-self: end;
+  }
+}

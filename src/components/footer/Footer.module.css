@@ -1,0 +1,131 @@
+.footer {
+  --arch: clamp(32px, 10vw, 180px);
+  position: relative;
+  margin-top: calc(-1 * var(--arch));
+  padding-top: calc(var(--arch) + clamp(4rem, 9vw, 7rem));
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  overflow: clip;
+  background:
+    radial-gradient(60% 40% at 50% 100%, color-mix(in oklab, var(--ember) 22%, transparent), transparent 70%),
+    var(--ink);
+  color: var(--text-on-dark);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+.inner {
+  display: grid;
+  gap: clamp(3rem, 6vw, 4.5rem);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.motto {
+  font-family: var(--font-serif), serif;
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.motto :global(.script) {
+  display: inline-block;
+  font-size: 0.95em;
+  color: var(--ember-hi);
+  rotate: -4deg;
+}
+
+.cols {
+  display: grid;
+  gap: 2rem;
+  padding-block: 2rem;
+  border-block: 1px solid rgb(255 255 255 / 0.08);
+  color: var(--muted-on-dark);
+}
+
+.colTitle {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ember-hi);
+}
+
+.address {
+  font-style: normal;
+}
+
+.links {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.links a {
+  position: relative;
+  transition: color 0.3s;
+}
+
+.links a:hover {
+  color: var(--text-on-dark);
+}
+
+.cols small {
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+@media (min-width: 760px) {
+  .cols {
+    grid-template-columns: 1.3fr 1fr 1fr;
+  }
+}
+
+/* ---- The sign: full-width neon logo */
+.bigLogoWrap {
+  display: grid;
+  place-items: center;
+  padding-block: 1rem;
+}
+
+.bigLogo {
+  width: min(88vw, 1000px);
+  color: #fff6ea;
+  --halo-blur: clamp(14px, 3vw, 34px);
+  transition: filter 0.6s;
+}
+
+.bigLogoWrap:hover .bigLogo {
+  filter: brightness(1.12) saturate(1.2);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.82rem;
+  color: var(--muted-on-dark);
+}
+
+.backTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.3s;
+}
+
+.backTop svg {
+  width: 16px;
+  height: 16px;
+}
+
+.backTop:hover {
+  color: var(--text-on-dark);
+}

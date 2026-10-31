@@ -1,0 +1,30 @@
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  pointer-events: none;
+  border: 1.5px solid color-mix(in oklab, var(--ember-hi) 85%, transparent);
+  box-shadow:
+    0 0 14px color-mix(in oklab, var(--ember) 70%, transparent),
+    inset 0 0 10px color-mix(in oklab, var(--ember) 45%, transparent);
+  opacity: 0;
+  scale: 1;
+  transition:
+    opacity 0.3s,
+    scale 0.4s var(--ease-out),
+    background-color 0.4s;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.active {
+  scale: 1.9;
+  background: color-mix(in oklab, var(--ember) 16%, transparent);
+}

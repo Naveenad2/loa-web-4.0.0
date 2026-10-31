@@ -1,0 +1,80 @@
+.marquee {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  height: clamp(110px, 16vw, 190px);
+  margin-block: calc(clamp(110px, 16vw, 190px) / -2);
+  overflow-x: clip;
+  pointer-events: none;
+}
+
+.band {
+  grid-area: 1 / 1;
+  align-self: center;
+  width: 110%;
+  margin-left: -5%;
+  padding-block: clamp(0.7rem, 1.6vw, 1.1rem);
+  overflow: hidden;
+  box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.6);
+}
+
+.clay {
+  rotate: -3deg;
+  background: linear-gradient(90deg, var(--clay-600), var(--clay), var(--clay-600));
+  color: var(--cream);
+}
+
+.cream {
+  rotate: 2.2deg;
+  background: var(--sand);
+  color: var(--clay-800);
+  opacity: 0.95;
+}
+
+.slider {
+  display: flex;
+  width: max-content;
+  animation: slide 38s linear infinite;
+}
+
+.cream .slider {
+  animation-direction: reverse;
+  animation-duration: 46s;
+}
+
+.track {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.track li {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding-right: clamp(1.25rem, 3vw, 2.5rem);
+  white-space: nowrap;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(1.35rem, 3.2vw, 2.4rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1;
+}
+
+.track svg {
+  width: 0.6em;
+  height: 0.6em;
+  fill: currentColor;
+  opacity: 0.75;
+}
+
+@keyframes slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider {
+    animation: none;
+  }
+}

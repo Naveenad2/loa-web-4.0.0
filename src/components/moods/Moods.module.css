@@ -1,0 +1,396 @@
+.moods {
+  position: relative;
+  padding-block: clamp(5rem, 12vw, 7rem) clamp(4rem, 10vw, 6rem);
+  background:
+    radial-gradient(70% 50% at 0% 0%, color-mix(in oklab, var(--olive) 40%, transparent), transparent 70%),
+    radial-gradient(60% 50% at 100% 100%, color-mix(in oklab, var(--moss) 80%, transparent), transparent 70%),
+    var(--olive-900);
+  color: var(--text-on-dark);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.eyebrow {
+  color: #d9c869;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: var(--fs-h2);
+}
+
+.title em {
+  font-style: italic;
+  font-weight: 400;
+  color: #e3d27a;
+}
+
+.meter {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 180px;
+}
+
+.hint {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-on-dark);
+}
+
+.bar {
+  display: none;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.14);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--ember), var(--ember-hi));
+  transform-origin: left;
+}
+
+/* ---- Track: native snap carousel by default */
+.track {
+  display: flex;
+  gap: clamp(0.9rem, 2vw, 1.75rem);
+  padding-inline: var(--gutter);
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Panels */
+.panel {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 min(86vw, 460px);
+  container-type: inline-size;
+  border-radius: 28px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.6);
+}
+
+/* Cursor spotlight (mouse only — custom props are set on pointermove) */
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.12), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.panel:hover::after {
+  opacity: 1;
+}
+
+.panelBody {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  height: 100%;
+  padding: clamp(1.4rem, 6cqi, 2.6rem);
+}
+
+.text {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.index {
+  font-family: var(--font-serif), serif;
+  font-size: clamp(3.5rem, 20cqi, 7rem);
+  font-weight: 500;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+  opacity: 0.55;
+}
+
+.kicker {
+  margin-top: 0.25rem;
+  font-size: clamp(1.7rem, 7cqi, 2.4rem);
+  line-height: 1;
+}
+
+.panelTitle {
+  font-size: clamp(2rem, 9cqi, 3.2rem);
+}
+
+.copy {
+  max-width: 38ch;
+  opacity: 0.82;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tags li {
+  padding: 0.4em 0.9em;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--clay) 45%, transparent);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.tags li:hover {
+  background: var(--clay);
+  color: var(--cream);
+}
+
+.media {
+  position: relative;
+  order: -1;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.panel:hover .img {
+  transform: scale(1.06);
+}
+
+/* Wide panels: text beside media */
+@container (min-width: 540px) {
+  .panelBody {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+  }
+  .media {
+    order: 0;
+    aspect-ratio: auto;
+    height: 82%;
+    min-height: 260px;
+  }
+  .mediaTall {
+    aspect-ratio: 0.62;
+    height: auto;
+    max-height: 100%;
+    border-radius: 999px 999px 18px 18px;
+  }
+}
+
+/* ---- Tones */
+.olive {
+  background: linear-gradient(160deg, #8f842f 0%, var(--olive-700) 100%);
+  color: var(--cream);
+}
+
+.olive .kicker {
+  color: #f3e7a6;
+}
+
+.ember {
+  background:
+    radial-gradient(80% 60% at 80% 100%, color-mix(in oklab, var(--ember) 42%, transparent), transparent 70%),
+    linear-gradient(160deg, #2c1b12, var(--ink));
+  color: var(--text-on-dark);
+}
+
+.ember .kicker {
+  color: var(--ember-hi);
+}
+
+.ember .media {
+  box-shadow: 0 0 60px -10px color-mix(in oklab, var(--ember) 60%, transparent);
+}
+
+.match {
+  background-color: var(--red);
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.17) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.17) 1px, transparent 1px);
+  background-size: 52px 52px;
+  color: #fff;
+}
+
+.match::before {
+  content: "";
+  position: absolute;
+  right: -30%;
+  bottom: -45%;
+  z-index: -1;
+  width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--sky);
+}
+
+.match .kicker {
+  color: var(--gold);
+}
+
+.cream {
+  background:
+    radial-gradient(60% 50% at 100% 0%, color-mix(in oklab, var(--sand) 90%, transparent), transparent 70%),
+    var(--cream);
+  color: var(--text-on-light);
+}
+
+.cream .kicker,
+.cream .index {
+  color: var(--clay);
+}
+
+/* ---- Match-night poster art */
+.matchArt {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 230px;
+  order: -1;
+}
+
+.smokeUp {
+  position: absolute;
+  top: 0;
+  left: 4%;
+  z-index: 2;
+  font-size: clamp(2.2rem, 11cqi, 3.6rem);
+  line-height: 1;
+  color: #fff;
+  rotate: -12deg;
+  text-shadow: 0 3px 0 rgb(0 0 0 / 0.15);
+}
+
+.goal {
+  display: grid;
+  justify-items: center;
+  padding: 0.12em 0.3em 0.08em;
+  font-family: var(--font-poster), Impact, sans-serif;
+  font-size: clamp(2.6rem, 14cqi, 4.6rem);
+  line-height: 0.92;
+  color: var(--violet);
+  background: var(--gold);
+  box-shadow: 8px 8px 0 rgb(0 0 0 / 0.18);
+  rotate: -4deg;
+}
+
+.goal b {
+  font-weight: 400;
+}
+
+.cloud {
+  position: absolute;
+  right: 0;
+  bottom: -2%;
+  max-width: 62%;
+  padding: 1.1em 1.4em;
+  font-family: var(--font-poster), Impact, sans-serif;
+  font-size: clamp(0.85rem, 3.6cqi, 1.15rem);
+  line-height: 1.05;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--red);
+  background:
+    radial-gradient(circle, rgb(70 62 55 / 0.55) 1.1px, transparent 1.4px) 0 0 / 5px 5px,
+    #ece7e0;
+  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+  rotate: -12deg;
+  animation: drift 6s ease-in-out infinite alternate;
+}
+
+@container (min-width: 540px) {
+  .matchArt {
+    order: 0;
+    height: 100%;
+  }
+}
+
+@keyframes drift {
+  to {
+    translate: -8px -10px;
+    rotate: -8deg;
+  }
+}
+
+/* ---- Desktop: pin + horizontal travel */
+@media (min-width: 960px) {
+  .moods {
+    height: calc(100vh + var(--distance, 120vw));
+    padding: 0;
+  }
+
+  .pin {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding-top: calc(var(--header-h) * 0.6);
+    overflow: hidden;
+  }
+
+  .track {
+    align-self: flex-start;
+    width: max-content;
+    overflow: visible;
+    scroll-snap-type: none;
+    will-change: transform;
+  }
+
+  .panel {
+    flex-basis: clamp(580px, 52vw, 780px);
+    height: min(62vh, 560px);
+  }
+
+  .bar {
+    display: block;
+  }
+}
+
+@media (min-width: 960px) and (max-height: 720px) {
+  .head {
+    margin-bottom: 1.25rem;
+  }
+  .title {
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+  }
+  .panel {
+    height: 66vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud {
+    animation: none;
+  }
+}
